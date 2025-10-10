@@ -18,7 +18,7 @@ def check_images(image_dir):
     else:
         print("✅ All images are readable")
 
-check_images("../dataset/laptop/train/images")
+check_images("../merged-dataset/test/images")
 
 
 # Function to check if all images have label files
@@ -38,4 +38,4 @@ def check_labels(image_dir, label_dir):
     else:
         print("✅ All images have label files")
 
-check_labels("../dataset/laptop/train/images", "dataset/Laptop/train/labels")
+check_labels("../merged-dataset/test/images", "../merged-dataset/test/labels")

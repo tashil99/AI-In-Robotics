@@ -196,7 +196,7 @@ def remove_low_quality_images(
 
 if __name__ == "__main__":
     # Path of directory to scan
-    target_dir = "../dataset/laptop/train/images"
+    target_dir = "../merged-dataset/test/images"
     results = check_image_quality(
         target_dir,
         min_size=(400, 400),

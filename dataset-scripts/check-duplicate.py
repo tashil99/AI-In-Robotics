@@ -4,37 +4,42 @@ from collections import defaultdict
 def find_duplicate_filenames(root_folder):
     """
     Finds files with the same name in a given folder and its subfolders.
-
-    Args:
-        root_folder (str): The path to the root folder to start scanning.
+    Prints total files scanned and lists duplicate filenames (if any).
     """
     filenames = defaultdict(list)
     duplicates = []
+    total_files = 0
 
-    print(f"Scanning for duplicate filenames in '{root_folder}'...")
+    print(f"🔍 Scanning for duplicate filenames in '{root_folder}'...\n")
 
     # Walk through the directory tree
     for dirpath, _, file_list in os.walk(root_folder):
         for filename in file_list:
-            # Store the full path of each file, keyed by its name
+            total_files += 1
             filenames[filename].append(os.path.join(dirpath, filename))
 
-    # Find filenames that are associated with more than one path
+    # Find duplicates
     for filename, paths in filenames.items():
         if len(paths) > 1:
             duplicates.append(paths)
 
+    print(f"\n📂 Total files checked: {total_files}")
+
     if not duplicates:
-        print("No duplicate filenames found.")
+        print("✅ No duplicate filenames found.")
     else:
-        print("Found the following sets of duplicate filenames:")
+        print(f"\n⚠️ Found {len(duplicates)} sets of duplicate filenames:")
         for i, path_list in enumerate(duplicates, 1):
             print(f"\nSet {i} (Filename: '{os.path.basename(path_list[0])}'):")
             for filepath in path_list:
                 print(f"  - {filepath}")
 
 # The root directory to scan for duplicates.
-DATASET_DIR = "../dataset"
+DATASET_DIR = "../merged-dataset"
 
-find_duplicate_filenames(DATASET_DIR)
+if not os.path.exists(DATASET_DIR):
+    print("❌ INCORRECT PATH")
+else:
+    find_duplicate_filenames(DATASET_DIR)
+
 

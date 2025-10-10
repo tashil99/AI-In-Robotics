@@ -67,7 +67,7 @@ def print_pixel_range_report(results: Dict[str, List[str]]) -> None:
         print("✅ All images are in standard [0, 255] uint8 range")
 
 if __name__ == "__main__":
-    target_dir = "../dataset/laptop/train/images"
+    target_dir = "../merged-dataset/valid/images"
     res = check_pixel_range(target_dir)
     print_pixel_range_report(res)
 

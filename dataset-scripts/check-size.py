@@ -153,5 +153,4 @@ def check_image_sizes(image_dir, target_width=640, target_height=640, ask_delete
         delete_large_images(image_dir, sizes)
 
 
-# Check your printer dataset
-check_image_sizes("../dataset/laptop/train/images", ask_delete=True)
+check_image_sizes("../merged-dataset/valid/images", ask_delete=True)

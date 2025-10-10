@@ -87,4 +87,4 @@ def validate_annotations(label_dir, num_classes=6):
         print("✅ All annotations are valid")
 
 
-validate_annotations("../dataset/laptop/train/labels")
+validate_annotations("../merged-dataset/valid/labels")
