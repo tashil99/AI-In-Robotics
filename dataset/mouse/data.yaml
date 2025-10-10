@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['Computer-mouse']
+
+roboflow:
+  workspace: kesiana-meco
+  project: computer-mouse
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/kesiana-meco/computer-mouse/dataset/1

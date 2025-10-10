@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 22
+names: ['ball', 'blades', 'blunt', 'board', 'bottle', 'can_drinks', 'can_food', 'credit_card', 'electrical_tool', 'fire_extinguisher', 'food_container', 'gas_tank', 'knife', 'laptop', 'liquid_pack', 'nail_polish', 'normal_lighter', 'paper_pack', 'plier', 'scissor', 'tube', 'wettissue']
+
+roboflow:
+  workspace: sh220706
+  project: laptop-w2tvk
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/sh220706/laptop-w2tvk/dataset/1
