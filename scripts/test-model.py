@@ -5,7 +5,7 @@ import cv2
 import glob
 
 # Define paths
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp1/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp502/weights/best.pt"
 SOURCE_PATH = "../dataset/test/images"
 SAVE_DIR = "runs/predict/AI-In-Robotics-CPU-Test"  # fixed output folder
 
