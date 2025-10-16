@@ -559,19 +559,19 @@ DATASET_DIRECTORY = "../dataset"
 find_duplicate_filenames(DATASET_DIRECTORY)
 
 #Check if all images in the following directory are readable
-check_images("../dataset/train/images")
+check_images("../dataset/valid/images")
 
 #Check if all images have their corresponding label
-check_labels("../dataset/train/images", "../dataset/train/labels")
+check_labels("../dataset/valid/images", "../dataset/valid/labels")
 
 #Check if all labels in the following directory are in YOLO format
-validate_annotations("../dataset/train/labels")
+validate_annotations("../dataset/valid/labels")
 
 #Check if all images in the following directory are in the expected size
-check_image_sizes("../dataset/train/images", ask_delete=True)
+check_image_sizes("../dataset/valid/images", ask_delete=True)
 
 #Check if all images in the following directory are in the expected pixel range -- Normalization check
-target_dir = "../dataset/train/images"
+target_dir = "../dataset/valid/images"
 res = check_pixel_range(target_dir)
 print_pixel_range_report(res)
 
