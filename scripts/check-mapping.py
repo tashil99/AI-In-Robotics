@@ -1,6 +1,7 @@
-# import os
-#
-# def delete_files_with_class_id(class_id_to_find, labels_dir="../dataset/test/labels", images_dir="../dataset/test/images"):
+import os
+from collections import defaultdict
+
+# def delete_files_with_class_id(class_id_to_find, labels_dir="../dataset/valid/labels", images_dir="../dataset/valid/images"):
 #     """
 #     Delete all label files that contain a specific class ID and their corresponding image files.
 #
@@ -71,9 +72,6 @@
 #     delete_files_with_class_id(CLASS_ID)
 
 
-import os
-from collections import defaultdict
-
 def count_labels_per_class(label_dir, num_classes=6):
     """
     Counts how many label files contain each YOLO class ID.
@@ -133,4 +131,4 @@ def count_labels_per_class(label_dir, num_classes=6):
 
 # Example usage
 if __name__ == "__main__":
-    count_labels_per_class("../dataset/test/labels", num_classes=6)
+    count_labels_per_class("../dataset/valid/labels", num_classes=6)

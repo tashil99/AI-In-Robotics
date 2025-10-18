@@ -3,4 +3,4 @@ val: ../valid/images
 test: ../test/images
 
 nc: 6
-names: ['chair', 'desk', 'keyboard', 'laptop', 'mouse', 'printer']
+names: ['chair', 'desk', 'pen', 'laptop', 'mouse', 'printer']
