@@ -1,41 +1,33 @@
 # scripts/training-model.py
+
 import os
 import pickle
 from ultralytics import YOLO
 
-# Avoid OpenMP duplicate runtime crash
+# Prevent OpenMP duplicate runtime crash
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-# CPU-specific performance tweaks
-os.environ["OMP_NUM_THREADS"] = "4"  # limit CPU threading
-os.environ["MKL_NUM_THREADS"] = "4"  # limit MKL (PyTorch backend)
-os.environ["ULTRALYTICS_CACHE"] = "ram"  # speed up by caching to RAM (if enough memory)
 
-# Load lightweight YOLOv8 model
-model = YOLO("yolov8n.pt")  # 'n' = nano version, smallest available
+# Load YOLOv8 model
+model = YOLO("yolov8s.pt")
 
-# Train (CPU-optimized config)
+# Train
 results = model.train(
     data="../dataset/data.yaml",
-    epochs=3,          # keep short for CPU runs
-    imgsz=320,         # smaller input = faster (sacrifice some accuracy)
-    batch=4,           # smaller batch fits CPU cache
-    device="cpu",      # force CPU explicitly
-    workers=2,         # limit dataloader threads to avoid overload
-    name="AI-In-Robotics-CPU-Exp1",
-    verbose=True,
-    optimizer="SGD",   # lighter than Adam
-    lr0=0.01,          # lower LR for small batch size
-    patience=2,        # early stopping faster
+    epochs=5,
+    imgsz=416,
+    batch=8,
+    name="AI-In-Robotics-Exp09",
+    verbose=True
 )
 
-# Save results (optional)
-results_dir = "runs/detect/AI-In-Robotics-CPU-Exp1"
+# Save results object (pickle)
+results_dir = "runs/detect/AI-In-Robotics-Exp09"
 os.makedirs(results_dir, exist_ok=True)
 results_path = os.path.join(results_dir, "results.pkl")
 
-with open(results_path, "wb") as f:
+with open(results_path, 'wb') as f:
     pickle.dump(results, f)
 
-print(f"\n✅ Training complete! Results saved to: {results_path}")
-print(f"📂 Plots, labels, and checkpoints are in '{results_dir}'")
+print(f"\nTraining complete! Results saved to: {results_path}")
+print(f"Plots, labels, and checkpoints are in '{results_dir}'")
