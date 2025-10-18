@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 # --- Paths ---
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp1/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
 SAVE_DIR = "runs/predict/AI-In-Robotics-CPU-Upload"
 
 # --- Prepare save folder ---
@@ -23,7 +23,7 @@ model = YOLO(MODEL_PATH)
 
 # --- File upload dialog ---
 root = tk.Tk()
-root.withdraw()  # hide main window
+root.withdraw()
 image_path = filedialog.askopenfilename(
     title="Select an image",
     filetypes=[("Image files", "*.jpg *.jpeg *.png")]
@@ -51,6 +51,7 @@ if image_path and os.path.exists(image_path):
         conf = float(box.conf[0])  # confidence
         cls = int(box.cls[0])      # class index
         label = f"{results[0].names[cls]}: {conf:.2f}"
+        print("The image you have inserted looks like a " + label)
 
         # Draw rectangle
         cv2.rectangle(img, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2)
@@ -63,8 +64,11 @@ if image_path and os.path.exists(image_path):
 
     # --- Display image with bounding boxes ---
     cv2.imshow("Prediction", img)
+
     print(f"Results saved to: {results[0].path}")
     print("Press any key to close the image window...")
+
+
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
