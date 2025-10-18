@@ -75,10 +75,6 @@ def find_duplicate_filenames(root_folder):
 
 # Function to validate YOLO annotation format
 def validate_annotations(label_dir, num_classes=6):
-    """
-    Validates YOLO format annotations in label files
-    Checks: format, normalization (0-1 range), bounds, and class IDs
-    """
     errors = []
     total_files = 0
     total_annotations = 0
@@ -234,9 +230,7 @@ def delete_large_images(image_dir, sizes, min_size=820):
 
 #Function to check size of images
 def check_image_sizes(image_dir, target_width=640, target_height=640, ask_delete=False):
-    """
-    Check dimensions of all images in a directory
-    """
+
     sizes = []
 
     for file in os.listdir(image_dir):
@@ -311,15 +305,7 @@ def check_pixel_range(
         image_dir: str,
         valid_ext: Tuple[str, ...] = (".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"),
 ) -> Dict[str, List[str]]:
-    """
-    Check if image pixel values are in the expected [0, 255] range (uint8).
 
-    Returns:
-        Dict with keys:
-        - valid_range: images with pixels in [0, 255] (uint8)
-        - invalid_range: images with unexpected pixel ranges
-        - unreadable: could not load
-    """
     results: Dict[str, List[str]] = {
         "valid_range": [],
         "invalid_range": [],
@@ -346,7 +332,6 @@ def check_pixel_range(
                 results["invalid_range"].append(
                     f"{path} (range=[{min_val:.4f}, {max_val:.4f}], dtype={img.dtype})"
                 )
-
     return results
 
 def print_pixel_range_report(results: Dict[str, List[str]]) -> None:
@@ -375,26 +360,7 @@ def check_image_quality(
     low_variance_thresh: float = 3.0,
     valid_ext: Tuple[str, ...] = (".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"),
 ) -> Dict[str, List[str]]:
-    """
-    Scan images in a directory (recursively) and return potential quality issues.
 
-    Returns a dict with keys:
-      - unreadable: image could not be decoded
-      - zero_size: decoded but width/height is 0
-      - too_small: below min_size
-      - extreme_aspect: aspect ratio beyond max_aspect_ratio
-      - low_variance: near-blank (variance below the threshold)
-
-    Args:
-        image_dir: Root directory to scan.
-        min_size: (min_width, min_height).
-        max_aspect_ratio: max(w/h, h/w) allowed.
-        low_variance_thresh: threshold on grayscale variance.
-        valid_ext: considered file extensions.
-
-    Returns:
-        Dict[str, List[str]] mapping issue -> list of paths (with brief info).
-    """
     issues: Dict[str, List[str]] = {
         "unreadable": [],
         "zero_size": [],
@@ -559,19 +525,19 @@ DATASET_DIRECTORY = "../dataset"
 find_duplicate_filenames(DATASET_DIRECTORY)
 
 #Check if all images in the following directory are readable
-check_images("../dataset/train/images")
+check_images("../dataset/test/images")
 
 #Check if all images have their corresponding label
-check_labels("../dataset/train/images", "../dataset/train/labels")
+check_labels("../dataset/test/images", "../dataset/test/labels")
 
 #Check if all labels in the following directory are in YOLO format
-validate_annotations("../dataset/train/labels")
+validate_annotations("../dataset/test/labels")
 
 #Check if all images in the following directory are in the expected size
-check_image_sizes("../dataset/train/images", ask_delete=True)
+check_image_sizes("../dataset/test/images", ask_delete=True)
 
 #Check if all images in the following directory are in the expected pixel range -- Normalization check
-target_dir = "../dataset/train/images"
+target_dir = "../dataset/test/images"
 res = check_pixel_range(target_dir)
 print_pixel_range_report(res)
 

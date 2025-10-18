@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 # --- Paths ---
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp502/weights/best.pt"
 SAVE_DIR = "runs/predict/AI-In-Robotics-CPU-Upload"
 
 # --- Prepare save folder ---
