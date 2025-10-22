@@ -1,10 +1,12 @@
 import cv2
 import os
+
+from torch import classes
 from ultralytics import YOLO
 import time
 
 # --- Paths ---
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp502/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
 
 # --- Check model exists ---
 if not os.path.exists(MODEL_PATH):
@@ -32,7 +34,7 @@ def test_yolo_live_camera():
         'laptop': (0, 0, 255),  # Red
         'mouse': (255, 255, 0),  # Cyan
         'printer': (255, 0, 255),  # Magenta
-        'keyboard': (0, 255, 255)  # Yellow
+        'pen': (0, 255, 255)  # Yellow
     }
 
     while True:
@@ -42,13 +44,13 @@ def test_yolo_live_camera():
             print("Error: Could not read frame")
             break
 
-        # Perform inference
         results = model.predict(
             source=frame,
-            imgsz=320,
-            conf=0.25,
+            imgsz=640,  # higher resolution = more accurate detections
+            conf=0.25,  # detect even low-confidence objects
+            iou=0.55,  # avoid duplicate overlapping boxes
             device="cpu",
-            verbose=False  # Disable prediction logs for cleaner output
+            verbose=False
         )
 
         # Get detections

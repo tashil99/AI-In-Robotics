@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 # --- Paths ---
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp502/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
 SAVE_DIR = "runs/predict/AI-In-Robotics-CPU-Upload"
 
 # --- Prepare save folder ---
@@ -35,7 +35,7 @@ if image_path and os.path.exists(image_path):
     # --- Run inference ---
     results = model.predict(
         source=image_path,
-        imgsz=320,
+        imgsz=300,
         conf=0.25,
         save=True,
         save_dir=SAVE_DIR,
@@ -51,7 +51,7 @@ if image_path and os.path.exists(image_path):
         conf = float(box.conf[0])  # confidence
         cls = int(box.cls[0])      # class index
         label = f"{results[0].names[cls]}: {conf:.2f}"
-        print("The image you have inserted looks like a " + label)
+        print("The image you have inserted contains a " + label)
 
         # Draw rectangle
         cv2.rectangle(img, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2)
