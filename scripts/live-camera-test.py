@@ -17,7 +17,7 @@ model = YOLO(MODEL_PATH)
 
 
 def test_yolo_live_camera():
-    # Initialize webcam
+    # Initialize webcam23
     cap = cv2.VideoCapture(0)  # 0 for default camera
 
     if not cap.isOpened():

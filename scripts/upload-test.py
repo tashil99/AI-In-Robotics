@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 # --- Paths ---
-MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
+MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp83/weights/best.pt"
 SAVE_DIR = "runs/predict/AI-In-Robotics-CPU-Upload"
 
 # --- Prepare save folder ---
@@ -35,7 +35,7 @@ if image_path and os.path.exists(image_path):
     # --- Run inference ---
     results = model.predict(
         source=image_path,
-        imgsz=300,
+        imgsz=640,
         conf=0.25,
         save=True,
         save_dir=SAVE_DIR,
