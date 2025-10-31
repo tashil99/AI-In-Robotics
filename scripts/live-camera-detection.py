@@ -1,11 +1,8 @@
 import cv2
 import os
-
-from torch import classes
 from ultralytics import YOLO
 import time
 
-# --- Paths ---
 MODEL_PATH = "runs/detect/AI-In-Robotics-CPU-Exp81/weights/best.pt"
 
 # --- Check model exists ---
@@ -108,6 +105,6 @@ def test_yolo_live_camera():
     print("Live detection stopped.")
 
 
-# Run live camera test
+# Running live camera detection
 if __name__ == "__main__":
     test_yolo_live_camera()
