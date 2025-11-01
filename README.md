@@ -11,7 +11,7 @@ The whole dataset is also included in the main branch.
 
 Link to Github Project: 
 
-https://github.com/tashil99/AI-In-Robotics
+https://github.com/tashil99/AI-In-Robotics~~~~
 
 ---
 
@@ -27,8 +27,7 @@ https://github.com/tashil99/AI-In-Robotics
 ## 1. Clone the Repository
 
 ```
-git clone https://github.com/yourusername/yolov8-object-detection.git
-cd yolov8-object-detection 
+https://github.com/tashil99/AI-In-Robotics.git
 ```
 ## 2. Create and Activate a Virtual Environment
 ### For Windows (PowerShell)
