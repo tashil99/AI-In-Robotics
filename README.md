@@ -11,7 +11,7 @@ The whole dataset is also included in the main branch.
 
 Link to Github Project: 
 
-https://github.com/tashil99/AI-In-Robotics~~~~
+https://github.com/tashil99/AI-In-Robotics
 
 ---
 
